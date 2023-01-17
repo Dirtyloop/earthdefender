@@ -1,3 +1,5 @@
+// Copyright Dirtyloop. All Rights Reserved.
+
 #include "Invader.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/BoxComponent.h"

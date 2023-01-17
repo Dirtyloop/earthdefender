@@ -1,27 +1,21 @@
+// Copyright Dirtyloop. All Rights Reserved.
+
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Defender.h"
-#include "GameFramework/Actor.h"
+#include "Public/AsteroidActor.h"
 #include "AsteroidSmall.generated.h"
 
 class URotatingMovementComponent;
 class UBoxComponent;
 
 UCLASS()
-class EARTHDEFENDERCPP_API AAsteroidSmall : public AActor
+class EARTHDEFENDERCPP_API AAsteroidSmall : public AAsteroidActor
 {
 	GENERATED_BODY()
 
 public:
 	AAsteroidSmall();
-
-	virtual void Move();
-
-	FVector CurrentLocation;
-
-	float speed;
-	float shift;
 
 protected:
 	virtual void BeginPlay() override;
@@ -35,20 +29,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		UBoxComponent* Box_Collision;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LifePoints")
-		float asteroidLifePoints = 100.0f;
-
-	UFUNCTION()
-		void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor,
-			class UPrimitiveComponent* OtherComp, int32 OtherBodyIndexType, bool bFromSweep,
-			const FHitResult& SweepResult);
-
-	float defaultDamagePoints = 20.0f;
-
-	void DestroyAsteroid();
-
 public:
 	virtual void Tick(float DeltaTime) override;
 
 };
-
