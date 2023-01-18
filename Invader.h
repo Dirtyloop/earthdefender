@@ -4,21 +4,20 @@
 
 #include "CoreMinimal.h"
 #include "Defender.h"
-#include "Public/Enemy.h"
-#include "GameFramework/Actor.h"
+#include "Public/InvaderActor.h"
 #include "Invader.generated.h"
 
 
 class UBoxComponent;
 
 UCLASS()
-class EARTHDEFENDERCPP_API AInvader : public AEnemy
+class EARTHDEFENDERCPP_API AInvader : public AInvaderActor
 {
 	GENERATED_BODY()
 	
 public:	
 	AInvader();
-
+	
 	virtual void MoveCircular();
 	virtual void Shoot();
 

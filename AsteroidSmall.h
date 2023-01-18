@@ -21,7 +21,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		UStaticMeshComponent* SM_AsteroidSmall;
+		UStaticMeshComponent* SM_Asteroid;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		URotatingMovementComponent* RotatingMovement;

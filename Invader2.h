@@ -1,16 +1,17 @@
+// Copyright Dirtyloop. All Rights Reserved.
+
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Defender.h"
-#include "Public/Enemy.h"
-#include "GameFramework/Actor.h"
+#include "Public/InvaderActor.h"
 #include "Invader2.generated.h"
 
 
 class UBoxComponent;
 
 UCLASS()
-class EARTHDEFENDERCPP_API AInvader2 : public AActor
+class EARTHDEFENDERCPP_API AInvader2 : public AInvaderActor
 {
 	GENERATED_BODY()
 

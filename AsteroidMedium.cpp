@@ -11,13 +11,13 @@ AAsteroidMedium::AAsteroidMedium()
 
 	AsteroidName = "AsteroidMedium";
 
-	SM_AsteroidMedium = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("AsteroidMedium"));
-	SM_AsteroidMedium->SetEnableGravity(false);
-	SM_AsteroidMedium->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	RootComponent = SM_AsteroidMedium;
+	SM_Asteroid = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("AsteroidMedium"));
+	SM_Asteroid->SetEnableGravity(false);
+	SM_Asteroid->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	RootComponent = SM_Asteroid;
 
 	RotatingMovement = CreateDefaultSubobject<URotatingMovementComponent>(TEXT("Rotating Movement"));
-	RotatingMovement->SetUpdatedComponent(SM_AsteroidMedium);
+	RotatingMovement->SetUpdatedComponent(SM_Asteroid);
 	RotatingMovement->RotationRate = FRotator(90.0f, 0.0f, 0.0f);
 
 	Box_Collision = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Component"));
