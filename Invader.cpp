@@ -11,6 +11,8 @@ AInvader::AInvader()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
+	InvaderName = "Invader";
+
 	SM_Invader = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Bullet"));
 	SM_Invader->SetEnableGravity(false);
 	SM_Invader->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
@@ -22,6 +24,7 @@ AInvader::AInvader()
 
 	speed = 10.0f;
 	RotationSpeed = 0.5;
+	DefaultDamagePoints = 100;
 }
 
 void AInvader::BeginPlay()
@@ -32,7 +35,6 @@ void AInvader::BeginPlay()
 	CurrentAngle = StartAngle / 57.3f;
 	AInvader::Tags.Add(FName("Invader"));
 	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AInvader::RandomizeShootTime, 0.1f, true);
-	//MoveCircular();
 }
 
 void AInvader::Tick(float DeltaTime)
@@ -40,13 +42,6 @@ void AInvader::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	MoveCircular();
 
-}
-
-void AInvader::RandomizeShootTime()
-{
-	if (FMath::RandRange(0, randomShootHigherBoundry) == 0) {
-		Shoot();
-	}
 }
 
 
@@ -63,30 +58,11 @@ void AInvader::MoveCircular()
 		RotationSpeed += 0.1;
 	}
 
-	float xPosition = 50.0 + cos(CurrentAngle - 1.57f) * Distance;
-	float yPosition = 230.0 + sin(CurrentAngle - 1.57f) * Distance;
+	float xPosition = EarthXLocation + cos(CurrentAngle - 1.57f) * Distance;
+	float yPosition = EarthYLocation + sin(CurrentAngle - 1.57f) * Distance;
 
 	SetActorLocationAndRotation(FVector(xPosition, yPosition, -110.0f), FRotator(0.0f, Angle, 0.0f));
 	
-}
-
-void AInvader::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, 
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndexType, bool bFromSweep, 
-	const FHitResult& SweepResult)
-{
-	if (OtherActor->ActorHasTag("Bullet")) {
-		UE_LOG(LogTemp, Warning, TEXT("Invader hitten!"));
-		InvaderLifePoints = 0.0f;
-		UE_LOG(LogTemp, Warning, TEXT("Invader Life Points: %g"), InvaderLifePoints);
-		DestroyInvader();
-		OtherActor->Destroy();
-	}
-}
-
-void AInvader::DestroyInvader()
-{
-	UE_LOG(LogTemp, Warning, TEXT("Invader destroyed!"));
-	this->Destroy();
 }
 
 void AInvader::Shoot()

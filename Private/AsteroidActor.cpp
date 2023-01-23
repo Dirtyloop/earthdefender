@@ -1,7 +1,6 @@
 // Copyright Dirtyloop. All Rights Reserved.
 
 #include "AsteroidActor.h"
-#include "Components/StaticMeshComponent.h"
 
 AAsteroidActor::AAsteroidActor()
 {

@@ -17,17 +17,17 @@ class EARTHDEFENDERCPP_API AAsteroid : public AAsteroidActor
 public:
 	AAsteroid();
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UStaticMeshComponent* SM_Asteroid;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	URotatingMovementComponent* RotatingMovement;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UBoxComponent* Box_Collision;
+
 protected:
 	virtual void BeginPlay() override;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		UStaticMeshComponent* SM_Asteroid;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		URotatingMovementComponent* RotatingMovement;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		UBoxComponent* Box_Collision;
 
 public:
 	virtual void Tick(float DeltaTime) override;

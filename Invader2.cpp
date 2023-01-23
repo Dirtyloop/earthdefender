@@ -9,6 +9,8 @@ AInvader2::AInvader2()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
+	InvaderName = "Invader2";
+
 	SM_Invader = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Bullet"));
 	SM_Invader->SetEnableGravity(false);
 	SM_Invader->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
@@ -21,6 +23,7 @@ AInvader2::AInvader2()
 	shift = 0.0f;
 	deltaMove = 0.0f;
 	RotationSpeed = 0.8;
+	DefaultDamagePoints = 20;
 }
 
 void AInvader2::BeginPlay()
@@ -38,13 +41,6 @@ void AInvader2::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	MoveSpiral();
 
-}
-
-void AInvader2::RandomizeShootTime()
-{
-	if (FMath::RandRange(0, randomShootHigherBoundry) == 0) {
-		Shoot();
-	}
 }
 
 void AInvader2::MoveHorizontal()
@@ -75,32 +71,10 @@ void AInvader2::MoveSpiral()
 	}
 	Distance -= 0.2;
 
-	float xPosition = 50.0 + cos(CurrentAngle - 1.57f) * Distance;
-	float yPosition = 230.0 + sin(CurrentAngle - 1.57f) * Distance;
+	float xPosition = EarthXLocation + cos(CurrentAngle - 1.57f) * Distance;
+	float yPosition = EarthYLocation + sin(CurrentAngle - 1.57f) * Distance;
 
 	SetActorLocationAndRotation(FVector(xPosition, yPosition, -110.0f), FRotator(0.0f, Angle, 0.0f));
-}
-
-
-void AInvader2::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndexType, bool bFromSweep,
-	const FHitResult& SweepResult)
-{
-	if (OtherActor->ActorHasTag("Bullet")) {
-		UE_LOG(LogTemp, Warning, TEXT("Invader2 hitten!"));
-		invaderLifePoints -= defaultDamagePoints;
-		UE_LOG(LogTemp, Warning, TEXT("Invader2 Life Points: %g"), invaderLifePoints);
-		if (invaderLifePoints <= 0) {
-			DestroyInvader();
-		}
-		OtherActor->Destroy();
-	}
-}
-
-void AInvader2::DestroyInvader()
-{
-	UE_LOG(LogTemp, Warning, TEXT("Invader2 destroyed!"));
-	this->Destroy();
 }
 
 void AInvader2::Shoot()

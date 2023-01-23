@@ -38,5 +38,5 @@ void AAsteroidMedium::BeginPlay()
 void AAsteroidMedium::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	Move();
+	Super::Move();
 }

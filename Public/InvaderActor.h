@@ -4,54 +4,52 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "AsteroidActor.generated.h"
+#include "InvaderActor.generated.h"
 
 UCLASS()
-class EARTHDEFENDERCPP_API AAsteroidActor : public AActor
+class EARTHDEFENDERCPP_API AInvaderActor : public AActor
 {
 	GENERATED_BODY()
-
-public:
-	AAsteroidActor();
-
-	UPROPERTY(VisibleAnywhere)
-	int EarthXLocation = 50;
+	
+public:	
+	AInvaderActor();
 
 	UPROPERTY(VisibleAnywhere)
-	int EarthYLocation = 230;
+		int EarthXLocation = 50;
 
-	UPROPERTY()
-	FVector CurrentLocation;
+	UPROPERTY(VisibleAnywhere)
+		int EarthYLocation = 230;
 
-	UPROPERTY()
-	float Speed;
-
-	UPROPERTY()
-	float Shift;
+	UPROPERTY(VisibleAnywhere)
+	int RandomShootHigherBoundry = 100;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	FString AsteroidName;
+	FString InvaderName;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "LifePoints")
-	int AsteroidLifePoints = 100;
+		int InvaderLifePoints = 100;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LifePoints")
-	int DefaultDamagePoints;
+		int DefaultDamagePoints;
+
 
 protected:
 	virtual void BeginPlay() override;
 
-public:
+public:	
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION()
-	virtual void Move();
-
-	UFUNCTION()
-	virtual void DestroyAsteroid();
+	virtual void DestroyInvader();
 
 	UFUNCTION()
 	void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor,
 		class UPrimitiveComponent* OtherComp, int32 OtherBodyIndexType, bool bFromSweep,
 		const FHitResult& SweepResult);
+
+	UFUNCTION()
+	virtual void RandomizeShootTime();
+
+	UFUNCTION()
+	virtual void Shoot();
 };

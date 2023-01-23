@@ -50,16 +50,6 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		UBoxComponent* Box_Collision;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LifePoints")
-		float InvaderLifePoints = 100.0f;
-
-	UFUNCTION()
-		void RandomizeShootTime();
-
-	UFUNCTION()
-		void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor,
-			class UPrimitiveComponent* OtherComp, int32 OtherBodyIndexType, bool bFromSweep, 
-			const FHitResult& SweepResult);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "RotateAround")
 		float RotationSpeed;
@@ -69,10 +59,5 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "RotateAround")
 		float Distance = 350.0f;
-
-	int randomShootHigherBoundry = 100;
-
-	void DestroyInvader();
-
 
 };
