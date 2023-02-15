@@ -35,6 +35,8 @@ public:
 
 	float DegToRad = PI / 180.0f;
 
+	float RadToDeg = 180.0f / PI;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FString InvaderName;
 
