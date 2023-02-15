@@ -23,7 +23,7 @@ public:
 
 	FVector CurrentLocation;
 
-	float speed;
+	float Speed;
 
 	FTimerHandle MemberTimerHandle;
 

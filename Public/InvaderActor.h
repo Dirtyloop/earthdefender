@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "../Bullet.h"
+#include "Math/UnrealMathUtility.h"
 #include "InvaderActor.generated.h"
 
 UCLASS()
@@ -29,6 +30,8 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	float MuzzleRotationPitch = 0.0f;
+
+	float DegToRad = PI / 180.0f;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FString InvaderName;

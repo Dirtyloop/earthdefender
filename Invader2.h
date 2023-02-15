@@ -24,9 +24,9 @@ public:
 
 	FVector CurrentLocation;
 
-	float speed;
-	float shift;
-	float deltaMove;
+	float Speed;
+	float Shift;
+	float DeltaMove;
 
 	FTimerHandle MemberTimerHandle;
 
