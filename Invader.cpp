@@ -3,9 +3,6 @@
 #include "Invader.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/BoxComponent.h"
-#include "Bullet.h"
-#include "Defender.h"
-#include "Components/SphereComponent.h"
 
 AInvader::AInvader()
 {

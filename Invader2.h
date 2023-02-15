@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Defender.h"
 #include "Public/InvaderActor.h"
 #include "Invader2.generated.h"
 
@@ -30,10 +29,6 @@ public:
 	float deltaMove;
 
 	FTimerHandle MemberTimerHandle;
-
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		ADefender* Defender;
 
 protected:
 	virtual void BeginPlay() override;
