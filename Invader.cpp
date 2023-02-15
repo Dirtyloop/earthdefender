@@ -35,6 +35,8 @@ void AInvader::BeginPlay()
 	CurrentAngle = StartAngle / 57.3f;
 	AInvader::Tags.Add(FName("Invader"));
 	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AInvader::RandomizeShootTime, 0.1f, true);
+	MuzzleOffset.Set(370.0f, 0.0f, -60.0f);
+	MuzzleRotationPitch = 0.0f;
 }
 
 void AInvader::Tick(float DeltaTime)
@@ -63,32 +65,4 @@ void AInvader::MoveCircular()
 
 	SetActorLocationAndRotation(FVector(xPosition, yPosition, -110.0f), FRotator(0.0f, Angle, 0.0f));
 	
-}
-
-void AInvader::Shoot()
-{
-	if (ProjectileClass)
-	{
-		FVector CameraLocation;
-		FRotator CameraRotation;
-		GetActorEyesViewPoint(CameraLocation, CameraRotation);
-		MuzzleOffset.Set(370.0f, 0.0f, -60.0f);
-		FVector MuzzleLocation = CameraLocation + FTransform(FRotator(0.0f, (Angle + 90.0f), 0.0f)).TransformVector(MuzzleOffset);
-		FRotator MuzzleRotation = FRotator(0.0f, (Angle + 90.0f), 0.0f);
-
-		UWorld* World = GetWorld();
-		if (World)
-		{
-			FActorSpawnParameters SpawnParams;
-			SpawnParams.Owner = this;
-			SpawnParams.Instigator = GetInstigator();
-
-			ABullet* Bullet = World->SpawnActor<ABullet>(ProjectileClass, MuzzleLocation, MuzzleRotation, SpawnParams);
-			if (Bullet)
-			{
-				FVector LaunchDirection = MuzzleRotation.Vector();
-				Bullet->FireInDirection(LaunchDirection);
-			}
-		}
-	}
 }

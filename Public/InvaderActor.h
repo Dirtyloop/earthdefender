@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "../Bullet.h"
 #include "InvaderActor.generated.h"
 
 UCLASS()
@@ -23,14 +24,27 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	int RandomShootHigherBoundry = 100;
 
+	UPROPERTY(VisibleAnywhere)
+	float Angle = 0.0f;
+
+	UPROPERTY(VisibleAnywhere)
+	float MuzzleRotationPitch = 0.0f;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FString InvaderName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+		FVector MuzzleOffset;
+
+	UPROPERTY(EditDefaultsOnly, Category = Projectile)
+		TSubclassOf<class ABullet> ProjectileClass;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "LifePoints")
 		int InvaderLifePoints = 100;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LifePoints")
 		int DefaultDamagePoints;
+
 
 
 protected:
@@ -40,7 +54,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION()
-	virtual void DestroyInvader();
+	void DestroyInvader();
 
 	UFUNCTION()
 	void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor,
@@ -48,8 +62,8 @@ public:
 		const FHitResult& SweepResult);
 
 	UFUNCTION()
-	virtual void RandomizeShootTime();
+	void RandomizeShootTime();
 
 	UFUNCTION()
-	virtual void Shoot();
+	void Shoot();
 };

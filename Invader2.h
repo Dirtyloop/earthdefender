@@ -20,7 +20,6 @@ public:
 
 	virtual void MoveHorizontal();
 	virtual void MoveSpiral();
-	virtual void Shoot();
 
 	virtual void Tick(float DeltaTime) override;
 
@@ -32,11 +31,6 @@ public:
 
 	FTimerHandle MemberTimerHandle;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
-		FVector MuzzleOffset;
-
-	UPROPERTY(EditDefaultsOnly, Category = Projectile)
-		TSubclassOf<class ABullet> ProjectileClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		ADefender* Defender;
@@ -45,7 +39,6 @@ protected:
 	virtual void BeginPlay() override;
 
 	float CurrentAngle = 0.0f;
-	float Angle = 0.0f;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		UStaticMeshComponent* SM_Invader;
@@ -62,5 +55,4 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SpiralMovement")
 		float Distance = 400.0f;
-
 };

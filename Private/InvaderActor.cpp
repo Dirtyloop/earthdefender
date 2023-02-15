@@ -52,6 +52,29 @@ void AInvaderActor::RandomizeShootTime()
 
 void AInvaderActor::Shoot()
 {
+	if (ProjectileClass)
+	{
+		FVector CameraLocation;
+		FRotator CameraRotation;
+		GetActorEyesViewPoint(CameraLocation, CameraRotation);
 
+		FVector MuzzleLocation = CameraLocation + FTransform(FRotator(0.0f, (Angle + 90.0f), 0.0f)).TransformVector(MuzzleOffset);
+		FRotator MuzzleRotation = FRotator(0.0f, (Angle + 90.0f), 0.0f);
+		MuzzleRotation.Pitch += MuzzleRotationPitch;
+
+		UWorld* World = GetWorld();
+		if (World)
+		{
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			SpawnParams.Instigator = GetInstigator();
+
+			ABullet* Bullet = World->SpawnActor<ABullet>(ProjectileClass, MuzzleLocation, MuzzleRotation, SpawnParams);
+			if (Bullet)
+			{
+				FVector LaunchDirection = MuzzleRotation.Vector();
+				Bullet->FireInDirection(LaunchDirection);
+			}
+		}
+	}
 }
-
