@@ -58,8 +58,8 @@ void AInvader::MoveCircular()
 		RotationSpeed += 0.1;
 	}
 
-	float xPosition = EarthXLocation + cos(CurrentAngle - 1.57f) * Distance;
-	float yPosition = EarthYLocation + sin(CurrentAngle - 1.57f) * Distance;
+	float xPosition = EarthXLocation + cos(CurrentAngle - NinetyDegreeInRadians) * Distance;
+	float yPosition = EarthYLocation + sin(CurrentAngle - NinetyDegreeInRadians) * Distance;
 
 	SetActorLocationAndRotation(FVector(xPosition, yPosition, -110.0f), FRotator(0.0f, Angle, 0.0f));
 	

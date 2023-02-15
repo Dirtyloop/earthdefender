@@ -37,6 +37,8 @@ public:
 
 	float RadToDeg = 180.0f / PI;
 
+	float NinetyDegreeInRadians = PI / 2;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FString InvaderName;
 

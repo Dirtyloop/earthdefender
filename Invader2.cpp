@@ -68,13 +68,12 @@ void AInvader2::MoveSpiral()
 	if ((CurrentAngle > 2 * M_PI + StartAngle * DegToRad) || (CurrentAngle < -2 * M_PI + StartAngle * DegToRad)) {
 		CurrentAngle = StartAngle * DegToRad;
 		Angle = StartAngle;
-		
 		RotationSpeed += 0.1;
 	}
 	Distance -= 0.2;
 
-	float xPosition = EarthXLocation + cos(CurrentAngle - 1.57f) * Distance;
-	float yPosition = EarthYLocation + sin(CurrentAngle - 1.57f) * Distance;
+	float xPosition = EarthXLocation + cos(CurrentAngle - NinetyDegreeInRadians) * Distance;
+	float yPosition = EarthYLocation + sin(CurrentAngle - NinetyDegreeInRadians) * Distance;
 
 	SetActorLocationAndRotation(FVector(xPosition, yPosition, -110.0f), FRotator(0.0f, Angle, 0.0f));
 }
