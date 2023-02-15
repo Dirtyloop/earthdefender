@@ -31,6 +31,8 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	float MuzzleRotationPitch = 0.0f;
 
+	float M_PI = PI;
+
 	float DegToRad = PI / 180.0f;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

@@ -65,7 +65,7 @@ void AInvader2::MoveSpiral()
 	CurrentAngle += RotationSpeed * GetWorld()->GetDeltaSeconds();
 	Angle = 57.3f * CurrentAngle;
 
-	if ((CurrentAngle > 6.28f + StartAngle * DegToRad) || (CurrentAngle < -6.28f + StartAngle * DegToRad)) {
+	if ((CurrentAngle > 2 * M_PI + StartAngle * DegToRad) || (CurrentAngle < -2 * M_PI + StartAngle * DegToRad)) {
 		CurrentAngle = StartAngle * DegToRad;
 		Angle = StartAngle;
 		

@@ -2,7 +2,6 @@
 
 #include "Invader.h"
 #include "Components/StaticMeshComponent.h"
-#include "Math/UnrealMathUtility.h"
 #include "Components/BoxComponent.h"
 
 
@@ -52,7 +51,7 @@ void AInvader::MoveCircular()
 
 	Angle = 57.3f * CurrentAngle;
 
-	if ((CurrentAngle > 2 * PI + StartAngle * DegToRad) || (CurrentAngle < -2 * PI + StartAngle * DegToRad)) {
+	if ((CurrentAngle > 2 * M_PI + StartAngle * DegToRad) || (CurrentAngle < -2 * M_PI + StartAngle * DegToRad)) {
 		CurrentAngle = StartAngle * DegToRad;
 		Angle = StartAngle;
 		Distance -= 25.0;
