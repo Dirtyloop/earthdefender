@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "Math/UnrealMathUtility.h"
 #include "Defender.generated.h"
 
 class UFloatingPawnMovement;
@@ -21,6 +22,10 @@ public:
 	virtual void Shoot();
 	float CenterPointX = 50.0f;
 	float CenterPointY = 230.0f;
+
+	float M_PI = PI;
+	float DegToRad = PI / 180.0f;
+	float RadToDeg = 180.0f / PI;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "RotateAround")
 		APawn* Defender;
@@ -61,7 +66,6 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		UFloatingPawnMovement* FloatingMovement;
-
 
 	UPROPERTY(EditDefaultsOnly, Category = Projectile)
 		TSubclassOf<class ABullet> ProjectileClass;

@@ -44,9 +44,9 @@ void ADefender::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void ADefender::MoveCircular(float AxisValue)
 {
 	CurrentAngle += RotationSpeed * AxisValue * GetWorld()->GetDeltaSeconds();;
-	Angle = 57.3f * CurrentAngle - 90.0f;
+	Angle = CurrentAngle * RadToDeg - 90.0f;
 
-	if ((CurrentAngle > 6.28f) || (CurrentAngle < -6.28f)) {
+	if ((CurrentAngle > 2 * M_PI) || (CurrentAngle < -2 * M_PI)) {
 		CurrentAngle = 0.0f;
 		Angle = 180.0f;
 	}
