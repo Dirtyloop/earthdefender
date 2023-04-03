@@ -6,7 +6,7 @@
 
 ### About
 
-Your mission, Lieutrnant, is to save the Earth from invaders from other planets. Good luck!
+Your mission, Lieutenant, is to save the Earth from invaders from other planets. Good luck!
 
 * Shoot - LMB or Space Bar
 * Move - z and c
